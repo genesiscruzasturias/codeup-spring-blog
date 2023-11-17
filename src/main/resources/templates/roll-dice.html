@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Roll Dice</title>
+</head>
+<body>
+<h1>Guess a number!</h1>
+
+<!--<div th:if="${n.length() < 6}">-->
+    <h1>You guessed <span th:text="${n}"></span>!</h1>
+<h2>Here's my random number: <span th:text="${random}"></span></h2>
+
+<!--</div>-->
+
+<form action="/roll-dice" method="post">
+    <input type="text" name="n" id="n" placeholder="Type a number..">
+    <button type="submit"> Submit</button>
+</form>
+</body>
+</html>
