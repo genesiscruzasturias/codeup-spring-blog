@@ -1,3 +1,5 @@
+package com.codeup.codeupspringblog;
+
 public class Post {
     private String title;
     private String description;

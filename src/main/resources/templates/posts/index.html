@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Posts</title>
 </head>
 <body>
 
+<div th:each="item : ${allPosts}">
+    <p th:text="${item.getTitle()}"></p>
+    <!--    <p th:text="${individualPost.getDescription()}"></p>-->
+</div>
 </body>
 </html>
