@@ -1,5 +1,6 @@
 package com.codeup.codeupspringblog;
 
+import com.codeup.codeupspringblog.repositories.PostRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,13 @@ import java.util.ArrayList;
 @Controller
 public class PostController {
 
+    private final PostRepository postDao;
+
+    public PostController(PostRepository postDao){
+        this.postDao = postDao;
+    }
+
+
     @GetMapping("/posts/index")
 //    @ResponseBody
     public String posts(Model model){
@@ -18,7 +26,7 @@ public class PostController {
     Post postTwo = new Post("Post Two", "Second Post");
     allPosts.add(postOne);
     allPosts.add(postTwo);
-    model.addAttribute("allPosts", allPosts);
+    model.addAttribute("allPosts", postDao.findAll());
 
         return "/posts/index";
     }
@@ -28,26 +36,26 @@ public class PostController {
 
         Post hi = new Post("Post One", "Hi, here it is");
         model.addAttribute("individualPost", hi);
-
+//       Post result = postDao.findById(id);
         return "/posts/show";
     }
 
     @GetMapping("/posts/create")
-    @ResponseBody
+//    @ResponseBody
     public String create(Model model){
 
-//        return "show";
-        return "posts index page";
+//        model.addAttribute("post",postDao.findAll());
+        return "posts/create";
     }
 
     @PostMapping("/posts/create")
 //    @ResponseBody
-    public String createNewPost(@RequestParam(name = "createPost") String createPost, Model model){
-
-//    String createPostInput = (String) model.getAttribute("input-value");
-    model.addAttribute("createPost", createPost);
-
-        return "show" + "create a new post";
+    public String createNewPost(@RequestParam(name = "title") String title,@RequestParam(name = "description") String description, Model model){
+        Post newPost = new Post(title,description);
+//        Save method is insert equivalent MYSQL insert
+        postDao.save(newPost);
+        model.addAttribute("post",postDao.findAll());
+        return "redirect:/posts/index";
     }
 
 }
