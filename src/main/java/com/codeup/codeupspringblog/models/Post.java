@@ -1,6 +1,8 @@
-package com.codeup.codeupspringblog;
+package com.codeup.codeupspringblog.models;
 
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Post {
@@ -13,6 +15,9 @@ public class Post {
 
     @Column(length = 100)
     private String description;
+
+    @OneToOne
+    private User owner;
 
     public Post(String title, String description) {
         this.title = title;

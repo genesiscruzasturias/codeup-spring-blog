@@ -6,8 +6,11 @@
 </head>
 <body>
 
-<div th:each="item : ${allPosts}">
-    <p th:text="${item.getTitle()}"></p>
+<div th:each="item : ${allPosts}" style="border: 2px dashed royalblue; width: 25%;">
+<!--    <p>Title</p>-->
+    <p style="border: 1px dashed darkorange"><b>Title:</b> <span th:text="${item.getTitle()}" ></span></p>
+<!--    <p>Description</p>-->
+    <p><b>Description:</b> <span  th:text="${item.getDescription()}"></span></p>
     <!--    <p th:text="${individualPost.getDescription()}"></p>-->
 </div>
 
