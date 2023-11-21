@@ -16,8 +16,17 @@ public class Post {
     @Column(length = 100)
     private String description;
 
-    @OneToOne
-    private User owner;
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Post(String title, String description) {
         this.title = title;

@@ -9,8 +9,9 @@
 <div th:each="item : ${individualPost}">
     <p th:text="${individualPost.getTitle()}"></p>
     <p th:text="${individualPost.getDescription()}"></p>
-</div>
+    <p th:text="${individualPost.getUser().getEmail()}"></p>
 
+</div>
 
 </body>
 </html>
